@@ -1,0 +1,26 @@
+PROJECT TYPE: White-Label / Multi-Tenant Storefront (standalone frontend module)
+
+BUILD COMMANDS
+==============
+npm install
+npx ng build     # real Angular build, verified passing (Angular 22)
+npx ng test --watch=false --browsers=ChromeHeadless   # real karma test suite, verified passing
+
+ARCHITECTURE
+============
+This is the enterprise-tenant Angular storefront, standalone - a
+genuine multi-component app (tenant banner + product grid + a real
+service layer), not a single bare component. Fetches
+GET /api/tenant-config and /api/tenant-products from
+TD_Whitelabelstorefront_BE_nodejs with x-tenant-id set to an
+enterprise tenant. Self-serve tenants get the React storefront
+instead (TD_Whitelabelstorefront_FE_reactjs).
+
+  src/app/lib/theme.ts                   pure theming + sort logic
+  src/app/services/tenant.service.ts      real HttpClient service (tenant config + products)
+  src/app/components/tenant-banner.component.ts
+  src/app/components/product-grid.component.ts
+  src/app/app.component.ts                composes the above
+  quality/                                21 real TypeScript code-quality tool fixtures
+
+Branches: whitelabelstorefront_angularjs<16|17|18|19>

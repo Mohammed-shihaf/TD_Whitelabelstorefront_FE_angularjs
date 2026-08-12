@@ -1,0 +1,5 @@
+<div *ngIf="tenant">
+  <app-tenant-banner [tenant]="tenant"></app-tenant-banner>
+  <app-product-grid [products]="products"></app-product-grid>
+</div>
+<p *ngIf="!tenant">Loading tenant…</p>
